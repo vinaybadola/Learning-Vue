@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+
+        body{
+            background: #eee;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+        
+        /* .box{
+            padding: 100px 0;
+            width: 400px;
+            text-align: center;
+            background: #ddd;
+            margin: 20px;
+            display: inline-block;
+        } */
+
+        p, h1, ul{
+            margin: 0;
+            padding: 0;
+        } 
+
+        li{
+            list-style-type: none;
+            background: #fff;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between   ;
+        }
+
+        /*  This style will only be applied to the class .fav when isFav is set to true   */
+        li.fav{
+            background: lightcoral;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>HELLO VUE :) </h1>
+    
+    <div id="app">
+        <!-- <div v-if="showBooks">
+            <p>Hi my name is {{ name }} and my age is {{ age }}</p>
+            <button v-on:click ="age++">Increase age</button>
+            <button @click="age--">Decrease age</button>
+            <button @click ="changeTitle('changedName')">CLick here to change text </button>
+        </div> -->
+
+        <!--
+            Below is about data binding or attribute binding , we use ":" to bind the attribute to the data or we use like this :src or :href or :class or :style etc to bind the attribute to the data.
+        -->
+         
+        <div v-if="showBooks">
+            <ul>
+                <!-- the handleIsFav(book) is used to change the color of favourite when click  -->
+                <li v-for="book in books" :class="{fav : book.isFav }" @click = "handleIsFav(book)">       <!-- The :class is the example of adding dynamic class.  -->
+                    <img :src= "book.img" :alt= "book.title">
+                    <h1>{{book.title}}</h1>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
+        </div>
+
+        <!--Below div is used to display filtered books using computed properties  when we click on the div it will remove the book book from the list because the isFav is set to false 
+        and the computed property will only show the books which are isFav is set to true. The computed property is used to filter the books and show only the books which are favourite.
+        -->
+        <h1>Filtered Books </h1>
+        <div>
+            <ul>
+                <!-- the handleIsFav(book) is used to change the color of favourite when click  -->
+                <li v-for="book in filteredBooks" :class="{fav : book.isFav }" @click = "handleIsFav(book)">       <!-- The :class is the example of adding dynamic class.  -->
+                    <img :src= "book.img" :alt= "book.title">
+                    <h1>{{book.title}}</h1>
+                    <p>{{book.author}}</p>
+                </li>
+            </ul>
+        </div>
+
+
+
+        <button @click ="showBooksEvent()">
+
+            <span v-if="showBooks">Hide books</span>
+            <span v-else>Show Books</span>
+
+        </button>
+        <!-- <div v-show="showBooks">Currently Showing books</div> -->
+        <br>
+        <!-- <div class="box" @mouseover="handleEvent($event , 5)">Mouse over</div>
+        <div class="box" @mouseleave="handleEvent">Mouse Leave</div>
+        <div class="box" @dblclick="handleEvent"  :style="eventColor">{{ doubleClickMessage }}</div>
+        <div class="box"@mousemove="handleMouseMove">position - {{ x }} and {{ y }}</div> -->
+    </div>
+
+    <script src="app.js"></script>
+
+    <!-- <script type="module">
+          import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+          createApp({
+
+            data() {
+              return {
+                message: 'Hello Vue!'
+              }
+            }
+
+  }).mount('#app') -->
+
+    </script>
+</body>
+</html>
