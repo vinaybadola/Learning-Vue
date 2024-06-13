@@ -41,18 +41,49 @@
 
   <button @click="toggleModalTwo">Click here to display Another modal</button>
 
+    <!--
+  
+    This is how we pass the data from parent component to child component using props. 
+      <CustomButton
+      :button-text="'Hello slots and props'"
+      :button-text-color="'red'"
+      :show-icon-before="true"
+      :show-icon-after="true"
+    /> -->
+    <br><br/>
+    <!-- 
+    This is the example of how we pass the data from parent component to child component using slots as we the data is getting bigger
+     it starts to get messy and hard to read and understand the code. 
+      <CustomButton>
+      <template v-slot:icon-before>
+        <i class="fa fa-arrow-left"></i>
+      </template>
+      <template v-slot:icon-after>
+        <i class="fa fa-arrow-right"></i>
+      </template>
+      <template v-slot:button-text>
+        Pass the data from component to child component using slots
+      </template>
+    </CustomButton> 
+    -->
+    <!-- <CustomButton placeholder="Some placeholder" name="name">
+
+    </CustomButton> -->
+    <CustomButton :prop-one="1" :prop-two="2" :label="'lol'"></CustomButton>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import Modal from './components/Modal.vue' ;
 import DemoSlot from './components/DemoSlot.vue' ;
+import CustomButton from './components/CustomButton.vue' ;
 
 export default { 
   name: 'App',
   components: {
     Modal,
-    DemoSlot
+    DemoSlot, 
+    CustomButton
   }, 
   data(){
     return {
