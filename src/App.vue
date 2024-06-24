@@ -6,7 +6,7 @@
     <Modal :msg ="msg"  :title= "title"  theme="sale"  @close="toggleModal"/> 
   </div>
 
-  <button @click ="toggleModal">Click here to display</button>
+  <button @click ="toggleModal"> Click here to display working of props </button>
 
   <!-- <HelloWorld msg="Welcome to Your vinay.js App"/> -->
   <p>Below is the example of refs , refs are generally like how we manipulate the DOM element using query selector in vanilla JS , it is almost the same thing</p>
@@ -41,6 +41,16 @@
 
   <button @click="toggleModalTwo">Click here to display Another modal</button>
 
+  <teleport to=".modals">
+    <h1>Teleporting the content to the different part of the DOM</h1>
+    <p>This is the example of how we use teleport , press f12 to see the DOM in the inspect mode and this 'p' tag 
+      and 'h1' tag will be inside div class "modals" not inside div id "#app" in the DOM in which we mount all the vue templates.
+    </p>
+  </teleport>
+
+  
+
+
     <!--
   
     This is how we pass the data from parent component to child component using props. 
@@ -70,6 +80,11 @@
 
     </CustomButton> -->
     <CustomButton :prop-one="1" :prop-two="2" :label="'lol'"></CustomButton>
+    <teleport to=".modals">   <TelePortComponent buttonText="Teleporting a component"></TelePortComponent> </teleport>
+
+    <h1>Task Manager</h1>
+    <Task/>
+    
 </template>
 
 <script>
@@ -77,13 +92,17 @@
 import Modal from './components/Modal.vue' ;
 import DemoSlot from './components/DemoSlot.vue' ;
 import CustomButton from './components/CustomButton.vue' ;
+import TelePortComponent from './components/TelePortComponent.vue' ;
+import Task from './components/Task.vue' ;
 
 export default { 
   name: 'App',
   components: {
     Modal,
     DemoSlot, 
-    CustomButton
+    CustomButton, 
+    TelePortComponent, 
+    Task
   }, 
   data(){
     return {
@@ -122,5 +141,32 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+
+font-family: Avenir, Helvetica, Arial, sans-serif;
+
+text-align: center;
+
+color: #2c3e50;
+
+margin-top: 60px;
+
+}
+
+#completed-tasks{
+
+margin:5px;
+
+border: 3px solid orange;
+
+padding: 10px;
+
+}
+
+div{
+
+margin:10px 0;
+
 }
 </style>
